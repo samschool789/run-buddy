@@ -3,6 +3,11 @@
   margin: 0;
   padding: 0;
 }
+:root {
+  --primary-color: #fce138;
+  --secondary-color: #024e76;
+  --tertiary-color: #39a6b2;
+}
 
 body {
   color: #39a6b2;
@@ -13,19 +18,19 @@ body {
 /* HEADER / NAV BAR STYLES START */
 
 header {
-  background-image: url("../images/hero-bg.jpg");
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  background-position: 80%;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
+  z-index: 9999;
   padding: 20px 35px;
   background-color: #39a6b2;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  background-image: url("../images/hero-bg.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: 80%;
 }
 
 header h1 {
@@ -33,6 +38,7 @@ header h1 {
   margin: 0;
   font-size: 36px;
   color: #fce138;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 header a {
@@ -53,9 +59,17 @@ header nav ul {
 }
 
 header nav ul li a {
-  margin: 10px 15px;
+  padding: 10px 15px;
   font-weight: lighter;
   font-size: 1.55vw;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+header nav ul li a:hover {
+  background: #fce138;
+  color: #024e76;
+  border-radius: 15px;
+  text-shadow: none;
 }
 
 /* HEADER / NAVBAR STYLES END */
@@ -94,21 +108,74 @@ section {
 }
 
 /* HERO STYLES START */
+.checkbox-wrapper input, .radio-wrapper input {
+  opacity: 0;
+}
+.checkbox-wrapper label, .radio-wrapper label {
+  position: relative;
+  left: 10px;
+  margin: 10px;
+  line-height: 1.6;
+}
+.checkbox-wrapper label::before, .radio-wrapper label::before {
+  content: "";
+  height: 20px;
+  width: 20px;
+  background: rgba(255,255,255, 0.75);
+  position: absolute;
+  top: -4px;
+  left: -30px;
+}
+.radio-wrapper label::before {
+  border-radius: 50%;
+}
+.radio-wrapper label::after {
+  background-image: radial-gradient(circle, #39a6b2, #024e76);
+  content: "";
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #024e76;
+  position: absolute;
+  left: -29px;
+  top: -3px;
+}
+
+.checkbox-wrapper label::after {
+  transform: rotate(-58deg);
+  content: "";
+  height: 6px;
+  width: 14px;
+  border-left: 2px solid #024e76;
+  border-bottom: 2px solid #024e76;
+  position: absolute;
+  left: -26px;
+  top: 1px;
+}
+.checkbox-wrapper input + label::after, 
+.radio-wrapper input + label::after {
+  content: none;
+}
+
+.checkbox-wrapper input:checked + label::after, 
+.radio-wrapper input:checked + label::after {
+  content: "";
+}
+
 .hero {
-  background-attachment: fixed;
-  background-position: 80%;
-  align-items: flex-start;
   background-image: url('../images/hero-bg.jpg');
   background-size: cover;
-  background-position: center;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  align-items: flex-start;
+  background-attachment: fixed;
+  background-position: 80%;
 }
 
 .hero-cta {
-  width: 100%;
-  text-align: center;
+  width: 35%;
+  text-align: right;
   margin: 3.5%;
   color: #fff;
   font-size: 18px;
@@ -116,20 +183,25 @@ section {
 }
 
 .hero-cta h2 {
-  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   font-style: italic;
   font-size: 55px;
   color: #fce138;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .hero-form {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   border: 3px solid #024e76;
-  background-color: #fce138;
+  background-color: rgba(255, 225, 56, 0.8);
   padding: 20px;
   color: #024e76;
-  width: 100%;
+  width: 40%;
   margin: 3.5%;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.hero-form button:hover {
+  background-color: #39a6b2;  
 }
 
 .hero-form h3 {
@@ -137,13 +209,10 @@ section {
   margin: 0;
 }
 .hero-form p {
-  border-radius: 15px;
   margin: 5px 0 15px 0;
 }
 
 .form-input {
-  background-color: rgba(255, 255, 255, 0.75);
-  border-radius: 10px;
   border: 1px solid #024e76;
   display: block;
   padding: 7px 15px;
@@ -151,9 +220,12 @@ section {
   color: #024e76;
   width: 100%;
   margin-bottom: 15px; 
+  border-radius: 10px;
+  background-color: rgba(255,255,255, 0.75);
 }
+
 .form-input:focus {
-  background-color: rgba(255, 255, 255, 1);
+  background-color: rgba(255,255,255, 1);
   outline: none;
 }
 
@@ -161,17 +233,14 @@ section {
   margin: 0 5px;
 }
 
-.hero-form button { 
-border-radius: 10px;
+.hero-form button {
   color: #fce138;
   background-color: #024e76;
   border: none;
   padding: 10px 20px;
   font-size: 16px;
+  border-radius: 10px;
 } 
-.hero-form button:hover {
-  background-color: #fce138;
-}
 /* HERO STYLES END */
 
 
@@ -183,7 +252,7 @@ border-radius: 10px;
   padding-bottom: 20px;
   text-align: center;
   margin: 0 auto 35px auto;
-  width: 80%;
+  width: 50%;
 }
 
 .primary-border {
@@ -214,18 +283,16 @@ border-radius: 10px;
 }
 
 .step {
-  border-bottom: 1px solid #39a6b2;
   margin: 50px auto;
   padding-bottom: 50px;
   width: 80%;
+  border-bottom: 1px solid #39a6b2;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
 }
-.step:nth-child(even) {
-  border-bottom: 1px solid #39a6b2;
-}
+
 .step:last-child {
   border-bottom: none;
 }
@@ -266,7 +333,6 @@ border-radius: 10px;
   line-height: 1.5;
   color: #024e76;
 }
-
 /* WHAT YOU DO STYLES END */
 
 /* MEET THE TRAINERS START */
@@ -280,7 +346,7 @@ border-radius: 10px;
 
 .trainer {
   margin: 20px;
-  flex: 0 70%;
+  flex: 1;
   background: #024e76;
   color: #fce138;
 }
@@ -330,7 +396,7 @@ border-radius: 10px;
 }
 
 .contact-info iframe {
-  flex: 1 100%;
+  height: 400px;
 }
 
 .contact-info div {
@@ -350,8 +416,6 @@ border-radius: 10px;
 }
 
 .contact-form input, .contact-form textarea {
-  background-color: rgba(255, 255, 255, 0.75);
-  border-radius: 10px;
   border: 1px solid #024e76;
   display: block;
   padding: 7px 15px;
@@ -360,13 +424,16 @@ border-radius: 10px;
   width: 100%;
   margin-bottom: 15px;
   margin-top: 5px;
+  border-radius: 10px;
+  background-color: rgba(255,255,255, 0.75);
 }
-.contact-form input:focus {
-  background-color: rgba(255, 255, 255, 1);
+
+.contact-form input:focus, .contact-form textarea:focus {
+  background-color: rgba(255,255,255, 1);
+  outline: none;
 }
 
 .contact-form button {
-  border-radius: 10px;
   width: 100%;
   border: none;
   background: #fce138;
@@ -374,7 +441,9 @@ border-radius: 10px;
   text-align: center;
   padding: 15px 0;
   font-size: 16px;
+  border-radius: 10px;
 }
+
 .contact-form button:hover {
   color: #fce138;
   background: #39a6b2;
@@ -383,8 +452,6 @@ border-radius: 10px;
 .contact-info a {
   color: #fce138;
 }
-
-
 /* REACH OUT STYLES END */
 
 /* UTILITIES */
@@ -402,35 +469,51 @@ border-radius: 10px;
 
 /* MEDIA QUERY FOR SMALLER DESKTOP SCREENS AND SMALLER */
 @media screen and (max-width: 980px) {
-header {
-  position: relative;
-  padding-bottom: 0;
-  justify-content: center;
-}
-header h1 {
-  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  width: 100%;
-  text-align: center;
-}
-header nav ul {
-  margin-top: 20px;
-  width: 100%;
-  text-align: center;
-}
-header nav ul li a {
-  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  font-size: 20px;
-}
-header nav ul li a :hover {
-  background: #fce138;
-  color: #024e76;
-  border-radius: 15px;
-  text-shadow: none;
-}
-footer h2, footer div {
-  text-align: center;
-  width: 100%
-}
+  header {
+    padding-bottom: 0;
+    justify-content: center;
+    position: relative;
+  }
+
+  header h1 {
+    width: 100%;
+    text-align: center;
+  }
+
+  header nav ul {
+    margin-top: 20px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  header nav ul li a {
+    font-size: 20px;
+  }
+
+  footer h2, footer div {
+    text-align: center;
+    width: 100%;
+  }
+
+  .hero-cta, .hero-form {
+    width: 100%;
+  }
+  
+  .hero-cta {
+    text-align: center;
+  }
+
+  .section-title {
+    width: 80%;
+  }
+  
+  .trainer {
+    flex: 0 70%;
+  }
+  
+  .contact-info iframe{
+    flex: 1 100%;
+  }
 }
 
 /* MEDIA QUERY FOR TABLETS AND SMALLER */
@@ -438,25 +521,32 @@ footer h2, footer div {
   section {
     padding: 30px 15px;
   }
+
   .step h3 {
     flex: 1 100%;
     text-align: center;
   }
+
   .step-info {
     flex: 2 100%;
     text-align: center;
     justify-content: center;
   }
+
   .step-img {
     flex: 0 32%;
     margin-right: 0;
     margin-top: 15px;
     margin-bottom: 15px;
   }
+
   .step-text {
-    flex: 100%
+    flex: 100%;  
   }
- 
+
+  .trainer-bio h3, .trainer-bio h4 {
+    display: block;
+  }
 }
 
 /* MEDIA QUERY FOR MOBILE PHONES AND SMALLER */
@@ -488,5 +578,4 @@ footer h2, footer div {
   .contact-form {
     order: 3;
   }
-
 }
