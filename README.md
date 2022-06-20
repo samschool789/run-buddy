@@ -11,7 +11,7 @@ A website that offers fitness training services.
 https://samschool789.github.io/run-buddy/
 
 ## Contribution
-Made with ❤️ by [your name]
+Made with ❤️ by Sam Mcilvoy 
 
 ## Purpose
 A website that offers fitness training services.
@@ -24,4 +24,8 @@ A website that offers fitness training services.
 https://samschool789.github.io/run-buddy/
 
 ## Contribution
-Made with ❤️ by [your name]
+Made with ❤️ by Sam Mcilvoy
+
+## Github
+github.com/samschool789
+
